@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Division - Like, So Fire! ✨</title>
+    <style>
+        /* --- Preppy Theme & Styling --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap'); /* Poppins font */
+
+        :root {
+            --primary-pink: #FF69B4; /* Hot Pink */
+            --secondary-pink: #FFC0CB; /* Light Pink */
+            --accent-lavender: #E6E6FA; /* Lavender */
+            --accent-blue: #ADD8E6; /* Light Blue */
+            --text-dark: #555;
+            --text-light: #fff;
+            --border-color: var(--primary-pink);
+            --bg-gradient: linear-gradient(135deg, var(--accent-lavender), var(--secondary-pink));
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; /* Use Poppins */
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            /* Adding a subtle sparkle effect to the background */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll from sparkles */
+        }
+
+        /* Sparkle effect using pseudo-elements */
+        body::before {
+            content: '✨';
+            position: absolute;
+            top: 10%; left: 10%;
+            font-size: 2em;
+            opacity: 0.5;
+            animation: sparkle 5s infinite alternate;
+            z-index: 0; /* Behind container */
+        }
+         body::after {
+            content: '💖';
+            position: absolute;
+            top: 70%; right: 15%;
+            font-size: 2.5em;
+            opacity: 0.4;
+            animation: sparkle 6s infinite alternate-reverse;
+             z-index: 0; /* Behind container */
+        }
+        @keyframes sparkle {
+            0% { transform: scale(0.8) rotate(-10deg); opacity: 0.3; }
+            100% { transform: scale(1.2) rotate(10deg); opacity: 0.6; }
+        }
+
+
+        .container {
+            background-color: var(--text-light);
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 650px; /* Slightly wider */
+            width: 90%;
+            border: 5px dotted var(--border-color); /* Dotted pink border */
+            margin-top: 20px;
+            position: relative; /* Needed for z-index */
+            z-index: 10; /* Keep container above background sparkles */
+        }
+
+        h1 {
+            color: var(--primary-pink);
+            font-size: 2.6em; /* Slightly larger */
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite; /* Keep pulse */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+             color: var(--primary-pink);
+             font-weight: 700;
+             margin-top: 30px; /* More space before sections */
+             margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 15px; /* Standard paragraph margin */
+        }
+
+        .explanation, .interactive-zone, .test-intro, #test-zone {
+            background-color: #fff9ff; /* Very light pink/lavender */
+            padding: 25px; /* More padding */
+            margin-top: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--secondary-pink); /* Light pink border */
+        }
+
+        .math-problem {
+            font-size: 1.7em; /* Slightly smaller for balance */
+            font-weight: bold;
+            color: var(--primary-pink);
+            margin: 15px 0;
+            padding: 10px 15px;
+            background-color: var(--accent-lavender); /* Lavender background */
+            border-radius: 10px;
+            display: inline-block;
+            border: 1px solid var(--secondary-pink);
+        }
+
+        .multiplication-hint {
+            font-size: 1.2em;
+            color: #6a5acd; /* Slate blue for hint text */
+            font-weight: bold;
+            margin-top: 10px;
+            background-color: #f0f8ff; /* Alice blue */
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block; /* Or block if preferred */
+            border: 1px dashed var(--accent-blue);
+        }
+
+        /* --- Interactive Elements Styling --- */
+        input[type="number"], input[type="text"] { /* Style text inputs similarly */
+            padding: 12px 15px;
+            font-size: 1.2em; /* Standardize input font size */
+            margin: 10px 5px;
+            border: 2px solid var(--secondary-pink);
+            border-radius: 10px;
+            width: 80px;
+            text-align: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            font-family: 'Poppins', sans-serif;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none; margin: 0;
+        }
+        input[type=number] { -moz-appearance: textfield; }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--text-light);
+            background-color: var(--primary-pink); /* Hot Pink buttons */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(100,100,100,0.1);
+            text-transform: uppercase; /* PREPPY */
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #ff85c1; /* Slightly lighter pink on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(100,100,100,0.15);
+        }
+        button:active { transform: translateY(1px); }
+
+        #new-problem-btn, #test-check-btn {
+            background-color: #ba8ff7; /* Lavender-purple */
+        }
+         #new-problem-btn:hover, #test-check-btn:hover { background-color: #c8a4f9; }
+
+        #start-test-btn {
+            background-color: #ff8c00; /* Orange contrast */
+            font-size: 1.2em;
+            padding: 15px 30px;
+            color: var(--text-light);
+        }
+        #start-test-btn:hover { background-color: #ff9d2a; }
+
+        button.secondary-btn { /* Style for Hint button */
+            background-color: var(--secondary-pink); /* Light Pink */
+            color: var(--primary-pink); /* Hot pink text */
+            font-weight: normal; /* Less bold */
+            letter-spacing: 0.5px;
+            text-transform: none; /* Normal case for hint */
+        }
+        button.secondary-btn:hover {
+             background-color: #ffd1da; /* Even lighter pink */
+             box-shadow: 0 4px 8px rgba(100,100,100,0.1);
+        }
+
+
+        #feedback, #test-feedback {
+            margin-top: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            min-height: 30px;
+            transition: all 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .correct { color: #28a745; /* Keep green for universal correct indication */ }
+        .incorrect { color: #dc3545; /* Keep red for universal incorrect indication */ }
+        .info { color: var(--accent-blue); }
+
+        /* --- Test Zone Specific Styles --- */
+        #test-zone { border-color: var(--primary-pink); }
+
+        .test-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; font-size: 1.2em; font-weight: bold;
+        }
+        #timer-display {
+            background-color: var(--secondary-pink); color: #333;
+            padding: 5px 15px; border-radius: 8px; font-weight: 700;
+        }
+        #question-counter { color: #888; }
+        #attempts-info { font-size: 1.1em; color: #666; margin-top: 15px; font-weight: normal; min-height: 20px; }
+
+        /* --- Message Styles --- */
+        .message-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); display: flex;
+            justify-content: center; align-items: center; z-index: 1000;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .message-box {
+            background-color: var(--text-light); padding: 40px; border-radius: 15px;
+            text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: scale(0.9); transition: transform 0.3s ease; border: 3px solid var(--primary-pink);
+        }
+        .message-overlay.visible { opacity: 1; visibility: visible; }
+        .message-overlay.visible .message-box { transform: scale(1); }
+        .message-box h2 { margin-top: 0; font-size: 2em; font-weight: 700;}
+        .message-box p { font-size: 1.2em; margin-bottom: 25px; color: var(--text-dark);}
+        .message-box button { font-size: 1.1em; }
+
+        .success-message h2 { color: var(--primary-pink); } /* Pink for success too */
+        .fail-message h2 { color: #8b0000; } /* Dark red for fail */
+
+        /* --- Visualizer Specific Styles (Modified for In-Place Grouping) --- */
+         .explanation { padding-bottom: 30px; }
+         .visualizer-controls {
+            margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+        }
+         .visualizer-controls label { font-weight: bold; color: #666; }
+         .visualizer-controls input[type="number"] { width: 70px; } /* Smaller input */
+         .visualizer-controls input[type="range"] { flex-grow: 1; max-width: 250px; cursor: pointer; }
+         .slider-value-label { font-weight: bold; color: var(--primary-pink); min-width: 90px; text-align: left; }
+
+        #lipstick-display { /* Renamed from -initial, this is the ONLY display area now */
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start;
+            gap: 15px; padding: 20px; margin-top: 10px; min-height: 80px; /* Taller */
+            border-radius: 10px; background-color: var(--accent-lavender); /* Lavender background */
+            border: 2px dashed var(--primary-pink); /* Dashed pink border */
+            font-size: 1.8em; /* Base size for individual lipsticks */
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+        /* Style when showing individual lipsticks (divisor 1) */
+         #lipstick-display.ungrouped { gap: 5px; border-style: solid; border-color: var(--secondary-pink); }
+
+        .lipstick-group {
+            border: 2px solid var(--primary-pink); /* Solid pink border for groups */
+            border-radius: 8px; padding: 10px 15px; background-color: #fff; text-align: center;
+            min-width: 50px; box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+        .group-count {
+            font-size: 0.8em; /* Relative to group container */ font-weight: bold;
+            color: var(--primary-pink); margin-bottom: 8px;
+        }
+        .group-lipsticks {
+            font-size: 0.9em; /* Relative to group container */ line-height: 1.3;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 3px;
+        }
+        /* Style for the equation below visualizer */
+        #division-equation-display {
+            font-size: 1.7em; font-weight: bold; color: var(--primary-pink); margin: 20px 0 10px 0;
+            padding: 10px 15px; background-color: var(--accent-lavender); border-radius: 10px;
+            display: inline-block; visibility: hidden; /* Initially hidden */
+        }
+
+
+        /* --- Utility --- */
+        .hidden { display: none !important; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="practice-view">
+            <span class="detective-icon" style="font-size: 2em;">👑</span> <h1>Division? Ugh, As If! 🙄</h1>
+            <p>Okay, listen up. Division is, like, totally easy if you know multiplication. It's not rocket science... mostly. Let's make math lit. ✨</p>
+
+             <div class="explanation">
+                <h2>How Grouping Works (Visual Guide) 💅</h2>
+                <p>So, basically, division splits stuff into equal groups. Duh. Pick a total number of lipsticks 💄 (obvi), then use the slider to see how many groups you can *actually* make without it being, like, totally random.</p>
+
+                <div class="visualizer-controls">
+                    <label for="total-input">Total Lipsticks (2-50):</label>
+                    <input type="number" id="total-input" min="2" max="50" value="12">
+                </div>
+
+                 <div id="lipstick-display" aria-live="polite">
+                    </div>
+
+                 <div class="visualizer-controls slider-control hidden" id="divisor-control-area">
+                     <label for="divisor-slider">Divide into:</label>
+                     <input type="range" id="divisor-slider" min="0" max="0" step="1" value="0">
+                     <span id="divisor-value-display" class="slider-value-label">1 group</span>
+                </div>
+
+                <p id="division-equation-display">? ÷ ? = ?</p>
+            </div>
+            <div class="interactive-zone">
+                <h2>Practice Time! (Don't Mess Up 😉)</h2>
+                <p>Use the multiplication hint (if you *have* to) to solve this:</p>
+                <div class="math-problem" id="division-problem">? ÷ ? = ?</div>
+                 <div class="multiplication-hint hidden" id="multiplication-hint">
+                    Think: What # &times; ? = ?? 🤔
+                </div>
+                <input type="number" id="user-answer" aria-label="Your practice answer">
+                <button id="check-btn">Check It!</button>
+                 <button id="show-hint-btn" class="secondary-btn">Hint? 🤔</button>
+                <button id="new-problem-btn">Next!</button>
+                <div id="feedback" aria-live="polite"></div>
+            </div>
+
+             <div class="test-intro">
+                <h2>QUIZ TIME! 👑</h2>
+                <p>Think you're all that? Prove it. <strong>20 questions</strong>, <strong>5 minutes</strong>. You miss one question 3 times? Test = OVER. Fail. Big yikes. But, like, no pressure. 💋</p>
+                <button id="start-test-btn">Start the Test! ⏱️</button>
+            </div>
+        </div>
+
+        <div id="test-zone" class="hidden">
+            <h2>OMG, Test Mode! Focus! 🧠</h2>
+            <div class="test-header">
+                <span id="question-counter">Question 1 / 20</span>
+                <span id="timer-display">05:00</span>
+            </div>
+            <div class="math-problem" id="test-question">? ÷ ? = ?</div>
+            <div id="attempts-info">You have 3 tries for this question. Don't blow it.</div>
+            <input type="number" id="test-user-answer" aria-label="Your test answer">
+            <button id="test-check-btn">Check Answer</button>
+            <div id="test-feedback" aria-live="polite"></div>
+        </div>
+
+         <p style="margin-top: 25px; font-size: 0.9em; color: #aaa;">Keep practicing, or whatever. You'll get it eventually. Maybe. 💖</p>
+    </div>
+
+    <div id="success-message" class="message-overlay">
+        <div class="message-box success-message">
+            <h2>💅 SLAY! Mission Accomplished! 💅</h2>
+            <p>OMG, You actually did it! All correct *and* in time? You're, like, low-key a genius. ✨</p>
+            <button id="success-ok-btn">K, Back to Chillin'</button>
+        </div>
+    </div>
+
+    <div id="fail-message" class="message-overlay">
+        <div class="message-box fail-message">
+            <h2 id="fail-title">💄 OOPS! Epic Fail! 💄</h2>
+            <p id="fail-reason">Seriously? This is kinda tragic rn.</p>
+            <button id="fail-ok-btn">Ugh, Fine. Practice More.</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Get DOM Elements ---
+
+        // Practice Zone Elements
+        const practiceDivisionProblemElement = document.getElementById('division-problem');
+        const practiceMultiplicationHintElement = document.getElementById('multiplication-hint');
+        const practiceUserAnswerElement = document.getElementById('user-answer');
+        const practiceCheckButton = document.getElementById('check-btn');
+        const practiceNewProblemButton = document.getElementById('new-problem-btn');
+        const practiceFeedbackElement = document.getElementById('feedback');
+        const showHintButton = document.getElementById('show-hint-btn');
+
+        // Test Zone Elements
+        const startTestButton = document.getElementById('start-test-btn');
+        const practiceView = document.getElementById('practice-view');
+        const testZone = document.getElementById('test-zone');
+        const questionCounterElement = document.getElementById('question-counter');
+        const timerDisplayElement = document.getElementById('timer-display');
+        const testQuestionElement = document.getElementById('test-question');
+        const testUserAnswerElement = document.getElementById('test-user-answer');
+        const testCheckButton = document.getElementById('test-check-btn');
+        const testFeedbackElement = document.getElementById('test-feedback');
+        const attemptsInfoElement = document.getElementById('attempts-info');
+
+        // Message Elements
+        const successMessageOverlay = document.getElementById('success-message');
+        const failMessageOverlay = document.getElementById('fail-message');
+        const failTitleElement = document.getElementById('fail-title');
+        const failReasonElement = document.getElementById('fail-reason');
+        const successOkButton = document.getElementById('success-ok-btn');
+        const failOkButton = document.getElementById('fail-ok-btn');
+
+        // Visualizer Elements
+        const totalInput = document.getElementById('total-input');
+        const lipstickDisplay = document.getElementById('lipstick-display');
+        const divisorControlArea = document.getElementById('divisor-control-area');
+        const divisorSlider = document.getElementById('divisor-slider');
+        const divisorValueDisplay = document.getElementById('divisor-value-display');
+        const divisionEquationDisplay = document.getElementById('division-equation-display');
+
+        // --- State Variables & Constants ---
+
+        // Practice State
+        let practiceCorrectAnswer;
+        let practiceFactor1, practiceFactor2, practiceProduct;
+
+        // Test State
+        const TOTAL_QUESTIONS = 20;
+        const TIME_LIMIT_SECONDS = 5 * 60;
+        const MAX_TRIES_PER_QUESTION = 3;
+        let testActive = false;
+        let testQuestions = [];
+        let currentQuestionIndex = 0;
+        let timeLeft = TIME_LIMIT_SECONDS;
+        let timerIntervalId = null;
+        let triesUsedOnCurrentQuestion = 0;
+
+        // Visualizer State
+        let currentTotal = 0;
+        let validDivisors = [];
+
+        // Randomized Feedback Phrases (for Practice Visual/TTS)
+        const correctFeedbackPhrases = [
+            "Yas! Correct! You ate that up! ✨",
+            "Slay! Nailed it! 💅",
+            "OMG, right! Low-key genius. 👑",
+            "Sheesh! That's totally correct. 💖",
+            "Correct! Like, obviously. 😉",
+            "You got it! Period. ✅"
+        ];
+
+        const incorrectFeedbackPhrases = [
+            "Ew, wrong. Try again, I guess.",
+            "As if! That's not it, chief. 🙄",
+            "Big yikes. Incorrect.",
+            "Seriously? Nope. The answer is {correctAnswer}.",
+            "It's giving... wrong answer. It's actually {correctAnswer}.",
+            "Uh, no. The answer is {correctAnswer}. Keep trying!"
+        ];
+
+        // --- Sound File Arrays (for Test Audio) ---
+
+        // MASTER lists of all sound files
+        // !!! IMPORTANT: REPLACE THESE PLACEHOLDERS WITH YOUR ACTUAL MP3 FILENAMES !!!
+        // Make sure the files are in the same folder as this HTML file. MP3 format recommended.
+        const allIncorrectSoundFiles = [
+            'incorrect1.mp3', // REPLACE
+            'incorrect2.mp3', // REPLACE
+            'incorrect3.mp3', // REPLACE
+            'incorrect4.mp3', // REPLACE
+            'incorrect5.mp3', // REPLACE
+            'incorrect6.mp3', // REPLACE
+            'incorrect7.mp3', // REPLACE
+            'incorrect8.mp3', // REPLACE
+            'incorrect9.mp3', // REPLACE
+            'incorrect10.mp3',// REPLACE
+            'incorrect11.mp3' // REPLACE
+            // Should be 11 files
+        ];
+        // Assumes MP3 format for best web compatibility!
+        const allCorrectSoundFiles = [
+            'correct1.mp3', // REPLACE
+            'correct2.mp3', // REPLACE
+            'correct3.mp3', // REPLACE
+            'correct4.mp3', // REPLACE
+            'correct5.mp3', // REPLACE
+            'correct6.mp3', // REPLACE
+            'correct7.mp3', // REPLACE
+            'correct8.mp3', // REPLACE
+            'correct9.mp3', // REPLACE
+            'correct10.mp3',// REPLACE
+            'correct11.mp3',// REPLACE
+            'correct12.mp3' // REPLACE
+            // Should be 12 files
+        ];
+
+        // Arrays to hold sounds currently AVAILABLE to be played in the current cycle
+        let availableIncorrectSounds = [];
+        let availableCorrectSounds = [];
+
+
+        // --- Helper Functions ---
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min); max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60); const remainingSeconds = seconds % 60;
+            return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }
+
+        function findDivisors(num) {
+            const divisors = []; if (num < 1) return divisors;
+            for (let i = 1; i <= num; i++) { if (num % i === 0) { divisors.push(i); } }
+            return divisors;
+        }
+
+        function toggleViews(showTest) {
+            if (showTest) { practiceView.classList.add('hidden'); testZone.classList.remove('hidden'); }
+            else { practiceView.classList.remove('hidden'); testZone.classList.add('hidden'); }
+            successMessageOverlay.classList.remove('visible'); failMessageOverlay.classList.remove('visible');
+        }
+
+        // Function to refill the available sounds list when it runs out
+        function refillAvailableSounds(type) {
+            if (type === 'correct') {
+                console.log("Refilling available correct sounds.");
+                availableCorrectSounds = [...allCorrectSoundFiles]; // Copy all back using spread syntax
+            } else if (type === 'incorrect') {
+                console.log("Refilling available incorrect sounds.");
+                availableIncorrectSounds = [...allIncorrectSoundFiles]; // Copy all back using spread syntax
+            }
+        }
+
+
+        // --- Practice Zone Functions ---
+
+        function generateNewPracticeProblem() {
+            practiceFactor1 = getRandomInt(2, 10);
+            practiceFactor2 = getRandomInt(2, 12);
+            practiceProduct = practiceFactor1 * practiceFactor2;
+
+            let hintText = '';
+            if (Math.random() < 0.5) {
+                practiceDivisionProblemElement.textContent = `${practiceProduct} ÷ ${practiceFactor1} = ?`;
+                hintText = `Think: What # &times; ${practiceFactor1} = ${practiceProduct}? 🤔`;
+                practiceCorrectAnswer = practiceFactor2;
+            } else {
+                practiceDivisionProblemElement.textContent = `${practiceProduct} ÷ ${practiceFactor2} = ?`;
+                hintText = `Think: What # &times; ${practiceFactor2} = ${practiceProduct}? 🤔`;
+                practiceCorrectAnswer = practiceFactor1;
+            }
+            practiceMultiplicationHintElement.innerHTML = hintText;
+            practiceMultiplicationHintElement.classList.add('hidden');
+
+            practiceUserAnswerElement.value = '';
+            practiceFeedbackElement.textContent = '';
+            practiceFeedbackElement.className = '';
+            practiceUserAnswerElement.focus();
+        }
+
+        // Practice Check with TTS
+        function checkPracticeAnswer() {
+            const userAnswer = parseInt(practiceUserAnswerElement.value);
+            practiceFeedbackElement.textContent = '';
+
+            if (isNaN(userAnswer)) {
+                practiceFeedbackElement.textContent = 'Uh, numbers only? Duh. 🙄';
+                practiceFeedbackElement.className = 'incorrect';
+                return;
+            }
+
+            let feedbackText = '';
+            let isCorrect = (userAnswer === practiceCorrectAnswer);
+
+            if (isCorrect) {
+                const randomIndex = Math.floor(Math.random() * correctFeedbackPhrases.length);
+                feedbackText = correctFeedbackPhrases[randomIndex];
+                practiceFeedbackElement.className = 'correct';
+            } else {
+                const randomIndex = Math.floor(Math.random() * incorrectFeedbackPhrases.length);
+                feedbackText = incorrectFeedbackPhrases[randomIndex];
+                feedbackText = feedbackText.replace('{correctAnswer}', practiceCorrectAnswer);
+                practiceFeedbackElement.className = 'incorrect';
+            }
+
+            practiceFeedbackElement.textContent = feedbackText;
+
+            if ('speechSynthesis' in window) {
+                try {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(feedbackText);
+                    utterance.lang = 'en-US';
+                    utterance.volume = 0.9;
+                    if (isCorrect) {
+                        utterance.pitch = 1.1; utterance.rate = 1.1;
+                    } else {
+                        utterance.pitch = 0.9; utterance.rate = 1.0;
+                    }
+                    window.speechSynthesis.speak(utterance);
+                 } catch (error) { console.error("Speech synthesis error:", error); }
+            } else { console.log("Browser doesn't support speech synthesis."); }
+        }
+
+        function showHint() {
+            practiceMultiplicationHintElement.classList.remove('hidden');
+        }
+
+
+        // --- Test Zone Functions ---
+
+        function generateTestQuestions(count) {
+            const questions = []; const usedPairs = new Set();
+            while (questions.length < count) {
+                const factor1 = getRandomInt(2, 12); const factor2 = getRandomInt(2, 12);
+                const product = factor1 * factor2; const pairString = `${product},${factor1}`;
+                 if (!usedPairs.has(pairString) && product > 4) {
+                     let question, answer;
+                     if (factor1 === factor2 || (factor1 < factor2 && Math.random() < 0.6) || (factor1 > factor2 && Math.random() < 0.4) ) {
+                        question = `${product} ÷ ${factor1} = ?`; answer = factor2;
+                     } else {
+                        question = `${product} ÷ ${factor2} = ?`; answer = factor1;
+                     }
+                    questions.push({ text: question, answer: answer }); usedPairs.add(pairString);
+                 }
+            } return questions;
+        }
+
+        function displayTestQuestion(index) {
+            if (index >= testQuestions.length) { endTest(true); return; }
+            const questionData = testQuestions[index]; currentQuestionIndex = index; triesUsedOnCurrentQuestion = 0;
+            questionCounterElement.textContent = `Question ${index + 1} / ${TOTAL_QUESTIONS}`;
+            testQuestionElement.textContent = questionData.text;
+            attemptsInfoElement.textContent = `You have ${MAX_TRIES_PER_QUESTION} tries. Try not to fail.`;
+            testFeedbackElement.textContent = ''; testFeedbackElement.className = '';
+            testUserAnswerElement.value = ''; testUserAnswerElement.disabled = false; testCheckButton.disabled = false;
+            testUserAnswerElement.focus();
+        }
+
+        function updateTimer() {
+            timeLeft--; timerDisplayElement.textContent = formatTime(timeLeft);
+            if (timeLeft <= 0) { endTest(false, 'time'); }
+        }
+
+         // Test Check - Modified sound playback logic
+         function checkTestAnswer() {
+            if (!testActive) return;
+            const userAnswer = parseInt(testUserAnswerElement.value);
+            testFeedbackElement.textContent = '';
+
+            if (isNaN(userAnswer)) {
+                testFeedbackElement.textContent = 'Seriously? A number, please. 🙄';
+                testFeedbackElement.className = 'info';
+                return;
+            }
+
+            triesUsedOnCurrentQuestion++;
+            const questionData = testQuestions[currentQuestionIndex];
+            const remainingTries = MAX_TRIES_PER_QUESTION - triesUsedOnCurrentQuestion;
+            let isCorrect = (userAnswer === questionData.answer);
+
+            if (isCorrect) {
+                // --- CORRECT Answer in Test ---
+                testFeedbackElement.textContent = 'Okay, correct! 💅 Next...';
+                testFeedbackElement.className = 'correct';
+                testUserAnswerElement.disabled = true; testCheckButton.disabled = true;
+
+                // --- Play a random correct sound from AVAILABLE list ---
+                 if (allCorrectSoundFiles.length > 0) {
+                    if (availableCorrectSounds.length === 0) { refillAvailableSounds('correct'); }
+                    if(availableCorrectSounds.length > 0){
+                        try {
+                            const randomIndex = Math.floor(Math.random() * availableCorrectSounds.length);
+                            const soundFileToPlay = availableCorrectSounds.splice(randomIndex, 1)[0];
+                            console.log("Playing sound:", soundFileToPlay, "| Remaining correct:", availableCorrectSounds.length);
+                            if(soundFileToPlay){ // Check if splice returned something valid
+                                const audio = new Audio(soundFileToPlay);
+                                audio.play().catch(error => { console.error(`Audio playback error for ${soundFileToPlay}:`, error); });
+                            } else { console.warn("Spliced undefined correct sound file?"); }
+                        } catch (error) { console.error("Error selecting/playing correct audio:", error); }
+                    }
+                 }
+                 // --- End of correct sound playback ---
+
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex >= TOTAL_QUESTIONS) { endTest(true); }
+                    else { displayTestQuestion(currentQuestionIndex); }
+                }, 1000);
+
+            } else {
+                // --- INCORRECT Answer in Test ---
+                testFeedbackElement.className = 'incorrect';
+
+                 // --- Play a random incorrect sound from AVAILABLE list ---
+                 if (allIncorrectSoundFiles.length > 0) {
+                     if (availableIncorrectSounds.length === 0) { refillAvailableSounds('incorrect'); }
+                     if(availableIncorrectSounds.length > 0){
+                         try {
+                             const randomIndex = Math.floor(Math.random() * availableIncorrectSounds.length);
+                             const soundFileToPlay = availableIncorrectSounds.splice(randomIndex, 1)[0];
+                             console.log("Playing sound:", soundFileToPlay, "| Remaining incorrect:", availableIncorrectSounds.length);
+                             if(soundFileToPlay){ // Check if splice returned something valid
+                                const audio = new Audio(soundFileToPlay);
+                                audio.play().catch(error => { console.error(`Audio playback error for ${soundFileToPlay}:`, error); });
+                             } else { console.warn("Spliced undefined incorrect sound file?"); }
+                         } catch (error) { console.error("Error selecting/playing incorrect audio:", error); }
+                     }
+                 }
+                 // --- End of incorrect sound playback ---
+
+                if (triesUsedOnCurrentQuestion >= MAX_TRIES_PER_QUESTION) {
+                    testFeedbackElement.textContent = `WRONG! It was ${questionData.answer}. Game over for you!`;
+                    testUserAnswerElement.disabled = true; testCheckButton.disabled = true;
+                    endTest(false, 'attempts');
+                } else {
+                    testFeedbackElement.textContent = `Bruh, that's not it. ${remainingTries} ${remainingTries === 1 ? 'try' : 'tries'} left.`;
+                    attemptsInfoElement.textContent = `You have ${remainingTries} ${remainingTries === 1 ? 'try' : 'tries'} left. Focus!`;
+                    testUserAnswerElement.focus(); testUserAnswerElement.select();
+                }
+            }
+        }
+
+        // Modified startTest to initialize available sound lists
+        function startTest() {
+            testActive = true; timeLeft = TIME_LIMIT_SECONDS; currentQuestionIndex = 0; triesUsedOnCurrentQuestion = 0;
+            testQuestions = generateTestQuestions(TOTAL_QUESTIONS);
+
+            refillAvailableSounds('correct'); // Initialize correct sounds pool
+            refillAvailableSounds('incorrect'); // Initialize incorrect sounds pool
+            console.log("Initial available sounds - Correct:", availableCorrectSounds.length, "Incorrect:", availableIncorrectSounds.length);
+
+            timerDisplayElement.textContent = formatTime(timeLeft); testFeedbackElement.textContent = '';
+            testUserAnswerElement.disabled = false; testCheckButton.disabled = false;
+            toggleViews(true);
+            displayTestQuestion(currentQuestionIndex);
+
+            if (timerIntervalId) { clearInterval(timerIntervalId); }
+            timerIntervalId = setInterval(updateTimer, 1000);
+        }
+
+         function endTest(isSuccess, reason = '') {
+             if (!testActive && timerIntervalId === null) return;
+
+            testActive = false;
+            clearInterval(timerIntervalId);
+            timerIntervalId = null;
+            testUserAnswerElement.disabled = true;
+            testCheckButton.disabled = true;
+
+            if (isSuccess) {
+                successMessageOverlay.classList.add('visible');
+            } else {
+                failTitleElement.textContent = '💄 OOPS! Epic Fail! 💄';
+                if (reason === 'time') { failReasonElement.textContent = "Time's up! That's kinda embarrassing... JK! 😂 Try again!"; }
+                else if (reason === 'attempts') { failReasonElement.textContent = `Missed question ${currentQuestionIndex + 1} too many times! Big yikes. Back to practice! 💋`; }
+                else { failReasonElement.textContent = "You didn't pass. Bummer. Practice makes... less bad? 😉"; }
+                failMessageOverlay.classList.add('visible');
+            }
+        }
+
+
+        // --- Visualizer Functions ---
+
+        function displayAndGroupLipsticks(total, divisor) {
+             lipstickDisplay.innerHTML = '';
+             divisionEquationDisplay.style.visibility = 'hidden';
+             lipstickDisplay.classList.remove('ungrouped');
+
+             if (total <= 0 || total > 50 || !divisor || total % divisor !== 0 || divisor <= 0) {
+                lipstickDisplay.innerHTML = '<span style="color: red; font-size: 0.8em;">Something went wrong, try a different total? 🤔</span>';
+                return;
+            }
+
+            const groupSize = total / divisor;
+
+             if (divisor === 1) {
+                 lipstickDisplay.classList.add('ungrouped');
+                 for (let i = 0; i < total; i++) {
+                     const lipstick = document.createElement('span');
+                     lipstick.textContent = '💄';
+                     lipstickDisplay.appendChild(lipstick);
+                 }
+                 divisionEquationDisplay.innerHTML = `${total} ÷ 1 = ${total}`;
+                 divisionEquationDisplay.style.visibility = 'visible';
+
+             } else {
+                 for (let i = 0; i < divisor; i++) {
+                     const groupDiv = document.createElement('div');
+                     groupDiv.className = 'lipstick-group';
+                     const countDiv = document.createElement('div');
+                     countDiv.className = 'group-count';
+                     countDiv.textContent = groupSize;
+                     groupDiv.appendChild(countDiv);
+                     const lipsticksDiv = document.createElement('div');
+                     lipsticksDiv.className = 'group-lipsticks';
+                     for (let j = 0; j < groupSize; j++) {
+                         const lipstick = document.createElement('span');
+                         lipstick.textContent = '💄';
+                         lipsticksDiv.appendChild(lipstick);
+                     }
+                     groupDiv.appendChild(lipsticksDiv);
+                     lipstickDisplay.appendChild(groupDiv);
+                 }
+                 divisionEquationDisplay.innerHTML = `${total} ÷ ${divisor} = ${groupSize}`;
+                 divisionEquationDisplay.style.visibility = 'visible';
+             }
+        }
+
+        function updateDivisorSlider(total) {
+            validDivisors = findDivisors(total);
+            if (validDivisors.length > 0) {
+                 divisorControlArea.classList.remove('hidden');
+                divisorSlider.min = 0; divisorSlider.max = validDivisors.length - 1;
+                const indexOfOne = validDivisors.indexOf(1);
+                divisorSlider.value = indexOfOne !== -1 ? indexOfOne : 0;
+                divisorSlider.disabled = validDivisors.length <= 1;
+                handleSliderChange();
+            } else {
+                divisorControlArea.classList.add('hidden'); divisorSlider.disabled = true;
+                lipstickDisplay.innerHTML = ''; divisionEquationDisplay.style.visibility = 'hidden';
+            }
+        }
+
+        function handleTotalChange() {
+            const newTotal = parseInt(totalInput.value);
+            if (isNaN(newTotal) || newTotal < 2 || newTotal > 50) {
+                 totalInput.value = currentTotal > 0 ? currentTotal : 12;
+                 lipstickDisplay.innerHTML = '<span style="color: red; font-size: 0.8em;">OMG, use a number between 2 and 50! 🙄</span>';
+                 divisorControlArea.classList.add('hidden');
+                 divisionEquationDisplay.style.visibility = 'hidden';
+                return;
+            }
+            currentTotal = newTotal;
+            updateDivisorSlider(currentTotal);
+        }
+
+        function handleSliderChange() {
+            if (validDivisors.length === 0) return;
+             const sliderIndex = parseInt(divisorSlider.value);
+             if (sliderIndex >= 0 && sliderIndex < validDivisors.length) {
+                const selectedDivisor = validDivisors[sliderIndex];
+                 divisorValueDisplay.textContent = `${selectedDivisor} ${selectedDivisor === 1 ? 'group' : 'groups'}`;
+                displayAndGroupLipsticks(currentTotal, selectedDivisor);
+            } else {
+                console.error("Slider index out of bounds:", sliderIndex);
+                lipstickDisplay.innerHTML = ''; divisionEquationDisplay.style.visibility = 'hidden';
+             }
+        }
+
+
+        // --- Event Listeners ---
+
+        practiceCheckButton.addEventListener('click', checkPracticeAnswer);
+        practiceNewProblemButton.addEventListener('click', generateNewPracticeProblem);
+        practiceUserAnswerElement.addEventListener('keypress', function(event) { if (event.key === 'Enter') { event.preventDefault(); checkPracticeAnswer(); } });
+        showHintButton.addEventListener('click', showHint);
+        startTestButton.addEventListener('click', startTest);
+        testCheckButton.addEventListener('click', checkTestAnswer);
+        testUserAnswerElement.addEventListener('keypress', function(event) { if (event.key === 'Enter') { event.preventDefault(); checkTestAnswer(); } });
+        successOkButton.addEventListener('click', () => toggleViews(false));
+        failOkButton.addEventListener('click', () => toggleViews(false));
+        totalInput.addEventListener('input', handleTotalChange);
+        divisorSlider.addEventListener('input', handleSliderChange);
+
+
+        // --- Initial Setup ---
+        generateNewPracticeProblem();
+        toggleViews(false);
+        handleTotalChange();
+        // Available sound lists are initialized in startTest()
+
+    </script>
+    </body>
+</html>
